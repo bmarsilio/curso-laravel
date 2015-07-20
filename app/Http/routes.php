@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/exemplo', 'WelcomeController@exemplo');
+
+/*Exemplos:*/
+/*Define um padrao a ser recebido como parametro na rota*/
+//Route::pattern('id', '[0-9]+');
+//
+//Route::get('user/{id?}', //function($id = 0) {
+//    if($id)
+//        return $id;
+//
+//    return 'Nao foi passado id';
+//});
+
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('produtos', ['as' => 'produtos', function() {
+        return 'Produtos';
+    }]);
+});
