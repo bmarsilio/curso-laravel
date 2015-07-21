@@ -30,7 +30,6 @@ Route::get('/exemplo', 'WelcomeController@exemplo');
 
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('produtos', ['as' => 'produtos', function() {
-        return 'Produtos';
-    }]);
+    Route::get('/categories', ['as' => 'categories', 'uses' => 'AdminCategoriesController@index']);
+    Route::get('/products', ['as' => 'produtos', 'uses' => 'AdminProductsController@index']);
 });
