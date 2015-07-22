@@ -19,7 +19,7 @@ Route::get('/exemplo', 'WelcomeController@exemplo');
 
 /*Exemplos:*/
 /*Define um padrao a ser recebido como parametro na rota*/
-//Route::pattern('id', '[0-9]+');
+
 //
 //Route::get('user/{id?}', //function($id = 0) {
 //    if($id)
@@ -30,6 +30,27 @@ Route::get('/exemplo', 'WelcomeController@exemplo');
 
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/categories', ['as' => 'categories', 'uses' => 'AdminCategoriesController@index']);
-    Route::get('/products', ['as' => 'produtos', 'uses' => 'AdminProductsController@index']);
+
+    Route::group(['prefix' => 'categories'], function() {
+        Route::get('/', ['as' => 'admin.categories', 'uses' => 'AdminCategoriesController@index']);
+        Route::get('/create', ['as' => 'admin.categories.create', 'uses' => 'AdminCategoriesController@index']);
+        Route::get('/destroy/{id}', ['as' => 'admin.categories.destroy', 'uses' => 'AdminCategoriesController@index']);
+        Route::get('/edit/{id}', ['as' => 'admin.categories.edit', 'uses' => 'AdminCategoriesController@index']);
+        Route::put('/update/{id}', ['as' => 'admin.categories.update', 'uses' => 'AdminCategoriesController@index']);
+    });
+
+    Route::group(['prefix' => 'products'], function() {
+        Route::get('/', ['as' => 'admin.products', 'uses' => 'AdminProductsController@index']);
+        Route::get('/create', ['as' => 'admin.products.create', 'uses' => 'AdminProductsController@index']);
+        Route::get('/destroy/{id}', ['as' => 'admin.products.destroy', 'uses' => 'AdminProductsController@index']);
+        Route::get('/edit/{id}', ['as' => 'admin.products.edit', 'uses' => 'AdminProductsController@index']);
+        Route::put('/update/{id}', ['as' => 'admin.products.update', 'uses' => 'AdminProductsController@index']);
+    });
+
 });
+
+/*
+ * Routes parameter validators
+ * **/
+
+Route::pattern('id', '[0-9]+');
