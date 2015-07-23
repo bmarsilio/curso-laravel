@@ -10,52 +10,52 @@ use CodeCommerce\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
 {
-    private $categoryModel;
+    private $category_model;
 
-    public function __construct(Category $categoryModel)
+    public function __construct(Category $category_model)
     {
-        $this->categoryModel = $categoryModel;
+        $this->category_model = $category_model;
     }
 
     public function index()
     {
-        $categories = $this->categoryModel->all();
+        $categories = $this->category_model->all();
 
-        return view('categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     public function store(CategoryRequest $request)
     {
         $inputs = $request->all();
 
-        $this->categoryModel->fill($inputs)->save();
+        $this->category_model->fill($inputs)->save();
 
-        return redirect()->route('categories');
+        return redirect()->route('admin.categories');
     }
 
     public function destroy($id)
     {
-        $this->categoryModel->find($id)->delete();
+        $this->category_model->find($id)->delete();
 
-        return redirect()->route('categories');
+        return redirect()->route('admin.categories');
     }
 
     public function edit($id)
     {
-        $category = $this->categoryModel->find($id);
+        $category = $this->category_model->find($id);
 
         return view('categories.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, $id)
     {
-        $this->categoryModel->find($id)->update($request->all());
+        $this->category_model->find($id)->update($request->all());
 
-        return redirect()->route('categories');
+        return redirect()->route('admin.categories');
     }
 }
