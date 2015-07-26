@@ -11,6 +11,12 @@ class Product extends Model
         'description',
         'price',
         'featured',
-        'recommend'
+        'recommend',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('CodeCommerce\Category');
+    }
 }

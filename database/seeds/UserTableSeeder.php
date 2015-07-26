@@ -10,11 +10,12 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::statement('TRUNCATE TABLE ' . 'categories' . ' CASCADE;');
-        factory('CodeCommerce\Category', 10)->create();
+        DB::table('users')->truncate();
+
+        factory('CodeCommerce\User', 10)->create();
     }
 }

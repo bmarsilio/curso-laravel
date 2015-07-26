@@ -34,6 +34,9 @@
                 @endforeach
             </tbody>
         </table>
+
+        {!! $categories->render() !!}
+
     </div>
 
 @endsection

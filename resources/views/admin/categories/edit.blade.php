@@ -28,6 +28,7 @@
 
     <div class="form-group">
         {!! Form::submit('Save Category', ['class' => 'btn btn-primary']) !!}
+        <a href="{{ route('admin.categories') }}" class="btn btn-default">Voltar</a>
     </div>
 
     {!! Form::close() !!}
