@@ -50,6 +50,12 @@ class AdminProductsController extends Controller
 
     public function destroy($id)
     {
+        $images = $this->getProductImages($id);
+
+        if($images) {
+            $this->destroyImagesFromProduct($images);
+        }
+
         $this->product_model->find($id)->delete();
 
         return redirect()->route('admin.products');
@@ -110,5 +116,25 @@ class AdminProductsController extends Controller
         $image->delete();
 
         return redirect()->route('admin.products.images', ['id' => $product->id]);
+    }
+
+    public function getProductImages($id)
+    {
+        $images = $this->product_image_model->where('product_id', $id)->get();
+
+        if($images) {
+            return $images;
+        }
+
+        return false;
+    }
+
+    public function destroyImagesFromProduct($images)
+    {
+        foreach($images as $image) {
+            $this->destroyImage($image->id);
+        }
+
+        return true;
     }
 }
