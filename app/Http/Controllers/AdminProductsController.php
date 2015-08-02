@@ -8,6 +8,7 @@ use CodeCommerce\Product;
 use CodeCommerce\Http\Requests\ProductRequest;
 use CodeCommerce\Http\Requests\ProductImageRequest;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -17,14 +18,19 @@ class AdminProductsController extends Controller
     private $product_model;
     private $category_model;
     private $product_image_model;
+    private $tag_model;
 
-    public function __construct(Product $product_model, Category $category_model, ProductImage $product_image_model)
+    public function __construct(Product $product_model, Category $category_model, ProductImage $product_image_model, Tag $tag_model)
     {
         $this->product_model = $product_model;
         $this->category_model = $category_model;
         $this->product_image_model = $product_image_model;
+        $this->tag_model = $tag_model;
     }
 
+    /*
+     * actions dos produtos
+     * */
     public function index()
     {
         $products = $this->product_model->paginate(5);
@@ -43,7 +49,9 @@ class AdminProductsController extends Controller
     {
         $inputs = $request->all();
 
-        $this->product_model->fill($inputs)->save();
+        $product = $this->product_model->create($inputs);
+
+        $this->storeTags($inputs['tags'], $product->id);
 
         return redirect()->route('admin.products');
     }
@@ -71,11 +79,18 @@ class AdminProductsController extends Controller
 
     public function update(ProductRequest $request, $id)
     {
-        $this->product_model->find($id)->update($request->all());
+        $inputs = $request->all();
+
+        $this->product_model->find($id)->update($inputs);
+
+        $this->storeTags($inputs['tags'], $id);
 
         return redirect()->route('admin.products');
     }
 
+    /*
+     * actions das imagens
+     * */
     public function images($id)
     {
         $product = $this->product_model->find($id);
@@ -134,6 +149,25 @@ class AdminProductsController extends Controller
         foreach($images as $image) {
             $this->destroyImage($image->id);
         }
+
+        return true;
+    }
+
+    /*
+     * actions das tags
+     * */
+
+    public function storeTags($tags, $product_id)
+    {
+        $tags = explode(',', $tags);
+
+        foreach($tags as $tag) {
+            $tag_store = $this->tag_model->firstOrCreate(['name' => trim($tag)]);
+            $ids_tags_store[] = $tag_store->id;
+        }
+
+        $product = $this->product_model->find($product_id);
+        $product->tags()->sync($ids_tags_store);
 
         return true;
     }

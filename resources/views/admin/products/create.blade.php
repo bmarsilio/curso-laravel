@@ -35,6 +35,11 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('tags', 'Tags:') !!}
+        {!! Form::textarea('tags', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <div class="form-group">
         {!! Form::label('featured', 'Featured:') !!}
         {!! Form::checkbox('featured', 'true') !!}
     </div>
