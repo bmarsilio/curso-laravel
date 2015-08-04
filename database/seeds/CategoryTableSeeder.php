@@ -14,7 +14,7 @@ class CategoryTableSeeder extends Seeder
 {
     public function run()
     {
-        //DB::statement('TRUNCATE TABLE ' . 'categories' . ' CASCADE;');
-        factory('CodeCommerce\Category', 10)->create();
+        DB::statement('TRUNCATE TABLE ' . 'categories' . ' CASCADE;');
+        factory('CodeCommerce\Category', 20)->create();
     }
 }

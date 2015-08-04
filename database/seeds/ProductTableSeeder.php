@@ -14,7 +14,7 @@ class ProductTableSeeder extends Seeder
 {
     public function run()
     {
-        //DB::table('products')->truncate();
+        DB::statement('TRUNCATE TABLE ' . 'products' . ' CASCADE;');
 
         factory('CodeCommerce\Product', 10)->create();
     }
