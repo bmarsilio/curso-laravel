@@ -1,4 +1,8 @@
 /*
+* ficou faltando o vídeo em anexo
+*/
+
+/*
 * esta aplicação está usando o banco de dados postgree
 */
 ## Laravel PHP Framework
