@@ -33,7 +33,7 @@ class AdminProductsController extends Controller
      * */
     public function index()
     {
-        $products = $this->product_model->paginate(5);
+        $products = $this->product_model->orderBy('id')->paginate(5);
 
         return view('admin.products.index', compact('products'));
     }
