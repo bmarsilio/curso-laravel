@@ -1,3 +1,6 @@
+/*
+* esta aplicação está usando o banco de dados postgree
+*/
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
