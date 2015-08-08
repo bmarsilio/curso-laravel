@@ -1,4 +1,10 @@
 /*
+* acho que ajustei o problema do layout (que não estava puxando o css), acho que era porque na hora de chamar o CSS não estava sendo usado a função {{ asset('') }}, agora vai bombar!
+
+Abraço!
+*/
+
+/*
 * ficou faltando o vídeo em anexo
 */
 
