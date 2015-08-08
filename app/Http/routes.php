@@ -57,7 +57,11 @@ Route::group(['prefix' => 'admin'], function() {
 
 });
 
-Route::get('/', 'StoreController@index');
+Route::group(['prefix' => '/'], function() {
+
+    Route::get('/', ['as' => 'store', 'uses' => 'StoreController@index']);
+    Route::get('category/{id}', ['as' => 'store.by.category', 'uses' => 'StoreController@indexByCategory']);
+});
 
 /*
 Route::get('categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);

@@ -28,4 +28,13 @@ class StoreController extends Controller
 
         return view('store.index', compact('categories', 'products_featured', 'products_recommended'));
     }
+
+    public function indexByCategory($id)
+    {
+        $categories = $this->category_model->all();
+        $products = $this->product_model->where('category_id', $id)->get();
+        $product_category = $this->category_model->find($id);
+
+        return view('store.indexByCategory', compact('categories', 'products', 'product_category'));
+    }
 }
