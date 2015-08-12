@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +24,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-sm-6">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
@@ -45,8 +45,8 @@
                     <div class="logo pull-left">
                         <a href="/"><span>CodeCommerce</span></a>
                     </div>
-
                 </div>
+
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
@@ -90,6 +90,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
                         <input type="text" placeholder="Buscar"/>
@@ -99,8 +100,6 @@
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
-
-
 
 <section>
     <div class="container">
@@ -112,6 +111,7 @@
 
         </div>
     </div>
+
     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <ul class="list-inline item-details">
@@ -123,10 +123,6 @@
 </section>
 
 <footer id="footer"><!--Footer-->
-
-
-
-
     <div class="footer-bottom">
         <div class="container">
             <div class="row">

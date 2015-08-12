@@ -9,7 +9,7 @@
 
         <!--products_by_category-->
         <div class="features_items">
-            <h2 class="title text-center">Produtos da Categoria {{ $product_category->name }}</h2>
+            <h2 class="title text-center">Produtos da Tag {{ $product_tag->name }}</h2>
 
             @foreach($products as $product)
                 @include('store.partial.product', ['products' => $product])

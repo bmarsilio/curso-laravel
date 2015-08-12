@@ -61,6 +61,8 @@ Route::group(['prefix' => '/'], function() {
 
     Route::get('/', ['as' => 'store', 'uses' => 'StoreController@index']);
     Route::get('category/{id}', ['as' => 'store.by.category', 'uses' => 'StoreController@indexByCategory']);
+    Route::get('product/{id}', ['as' => 'productDetail', 'uses' => 'StoreController@indexByProduct']);
+    Route::get('tag/{id}', ['as' => 'store.by.tag', 'uses' => 'StoreController@indexByTag']);
 });
 
 /*
