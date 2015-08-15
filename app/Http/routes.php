@@ -63,6 +63,14 @@ Route::group(['prefix' => '/'], function() {
     Route::get('category/{id}', ['as' => 'store.by.category', 'uses' => 'StoreController@indexByCategory']);
     Route::get('product/{id}', ['as' => 'productDetail', 'uses' => 'StoreController@indexByProduct']);
     Route::get('tag/{id}', ['as' => 'store.by.tag', 'uses' => 'StoreController@indexByTag']);
+
+    Route::group(['prefix' => 'cart'], function() {
+        Route::get('/', ['as' => 'store.cart', 'uses' => 'CartController@index']);
+        Route::get('/add/{id}', ['as' => 'store.cart.add', 'uses' => 'CartController@add']);
+        Route::get('/destroy/{id}', ['as' => 'store.cart.destroy', 'uses' => 'CartController@destroy']);
+        Route::get('/adjust-qtd/{type}/{id}/{qtd}', ['as' => 'store.cart.adjust', 'uses' => 'CartController@itemQuantity']);
+    });
+
 });
 
 /*

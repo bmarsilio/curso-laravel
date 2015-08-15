@@ -2567,3 +2567,7 @@ h2.title {
 .logo{
 	font-size: 23px;
 }
+
+.cart_total {
+    margin-right: 100px;
+}

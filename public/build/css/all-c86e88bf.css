@@ -6013,6 +6013,10 @@ h2.title {
 	font-size: 23px;
 }
 
+.cart_total {
+    margin-right: 100px;
+}
+
 /* lg */ 
 @media (min-width: 1200px) {
 
