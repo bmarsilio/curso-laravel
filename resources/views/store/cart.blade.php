@@ -65,8 +65,13 @@
                                 <span class="cart_total">
                                     TOTAL: R$ {{ $cart->getTotal() }}
                                 </span>
-
-                                <a href="#" class="btn btn-success">Finalizar Carrinho</a>
+                                @if(!$cart->all())
+                                    <a href="{{ route('checkout.place') }}" class="btn btn-success" disabled>
+                                        Finalizar Carrinho
+                                    </a>
+                                    @else
+                                    <a href="{{ route('checkout.place') }}" class="btn btn-success">Finalizar Carrinho</a>
+                                @endif
                             </div>
                         </td>
                     </tr>

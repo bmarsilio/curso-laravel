@@ -28,7 +28,7 @@ Route::get('/exemplo', 'WelcomeController@exemplo');
 //    return 'Nao foi passado id';
 //});
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function() {
 
     Route::group(['prefix' => 'categories'], function() {
         Route::get('/', ['as' => 'admin.categories', 'uses' => 'AdminCategoriesController@index']);
@@ -71,7 +71,14 @@ Route::group(['prefix' => '/'], function() {
         Route::get('/adjust-qtd/{type}/{id}/{qtd}', ['as' => 'store.cart.adjust', 'uses' => 'CartController@itemQuantity']);
     });
 
+    Route::get('checkout/place-order', ['as' => 'checkout.place', 'middleware' => 'auth', 'uses' => 'CheckoutController@place']);
+
 });
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
 
 /*
 Route::get('categories', ['as' => 'categories', 'uses' => 'CategoriesController@index']);
@@ -81,6 +88,7 @@ Route::get('categories/destroy/{id}', ['as' => 'categories.destroy', 'uses' => '
 Route::get('categories/edit/{id}', ['as' => 'categories.edit', 'uses' => 'CategoriesController@edit']);
 Route::put('categories/update/{id}', ['as' => 'categories.update', 'uses' => 'CategoriesController@update']);
 */
+
 /*
  * Routes parameter validators
  * **/

@@ -20,6 +20,6 @@ class WelcomeController extends Controller
 
         $categories = $this->category->all();
 
-        return view('exemplo', compact('categories'));
+        return view('auth.auth-check', compact('categories'));
     }
 }
