@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('users')->truncate();
+        DB::statement("TRUNCATE users CASCADE;");
 
         factory('CodeCommerce\User', 10)->create();
     }
