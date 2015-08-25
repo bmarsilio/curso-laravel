@@ -51,7 +51,11 @@ class CheckoutController extends Controller
 
             }
 
-            dd($order);
+            // limpa o carrinho
+            Session::set('cart', null);
+
+
+            dump($order);
         }
     }
 }
