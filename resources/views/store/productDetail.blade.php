@@ -68,8 +68,6 @@
             </div>
         </div>
         <!--/product-details-->
-
-
     </div>
 
 @endsection

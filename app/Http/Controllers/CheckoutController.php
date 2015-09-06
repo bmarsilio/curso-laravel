@@ -29,6 +29,7 @@ class CheckoutController extends Controller
 
     public function place()
     {
+
         $categories = $this->category->all();
 
         if(!Session::has('cart')) {
@@ -65,7 +66,6 @@ class CheckoutController extends Controller
 
             return view('store.checkout', compact('order', 'categories', 'carrinho'));
         }
-
     }
 
 }

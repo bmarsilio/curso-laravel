@@ -19,4 +19,5 @@
         <!--products_by_category-->
 
     </div>
+
 @endsection
