@@ -12,18 +12,22 @@ use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use PHPSC\PagSeguro\Items\Item;
+use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
 
 class CheckoutController extends Controller
 {
     protected $order;
     protected $orderItem;
     protected $category;
+    protected $checkoutService;
 
-    public function __construct(Order $order, OrderItem $orderItem, Category $category)
+    public function __construct(Order $order, OrderItem $orderItem, Category $category, CheckoutService $checkoutService)
     {
         $this->order = $order;
         $this->orderItem = $orderItem;
         $this->category = $category;
+        $this->checkoutService = $checkoutService;
     }
 
 
@@ -40,6 +44,9 @@ class CheckoutController extends Controller
         $cart = Session::get('cart');
 
         if($cart->getTotal() > 0) {
+
+            $checkout = $this->checkoutService->createCheckoutBuilder();
+
             $order = $this->order->create(
                 [
                     'user_id' => Auth::user()->id,
@@ -48,6 +55,8 @@ class CheckoutController extends Controller
             );
 
             foreach($cart->all() as $k => $item) {
+
+                $checkout->addItem(new Item($k, $item['name'], number_format($item['price'], 2, '.', ''), $item['qtd']));
 
                 $order->items()->create(
                     [
@@ -64,7 +73,9 @@ class CheckoutController extends Controller
 
             event(new CheckoutEvent(Auth::user(), $order));
 
-            return view('store.checkout', compact('order', 'categories', 'carrinho'));
+            $response = $this->checkoutService->checkout($checkout->getCheckout());
+
+            return redirect($response->getRedirectionUrl());
         }
     }
 

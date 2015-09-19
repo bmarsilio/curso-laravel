@@ -83,6 +83,8 @@ Route::group(['prefix' => '/'], function() {
 
 });
 
+Route::get('test', 'CheckoutController@teste');
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
